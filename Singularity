@@ -118,4 +118,4 @@ IncludeCmd: yes # Use the CMD as runscript instead of ENTRYPOINT
     rm -rf /root/.cache
 	
 
-	cd /root
+    cd /root
