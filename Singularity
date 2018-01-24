@@ -60,11 +60,13 @@ IncludeCmd: yes # Use the CMD as runscript instead of ENTRYPOINT
     python -m ipykernel.kernelspec
 
 	# Set up our notebook config.
+	wget https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/jupyter_notebook_config.py
 	cp jupyter_notebook_config.py /root/.jupyter/
 
 	# Jupyter has issues with being run directly:
 	#   https://github.com/ipython/ipython/issues/7062
 	# We just add a little wrapper script.
+	wget https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/run_jupyter.py
 	cp run_jupyter.sh /
 
 	# Set up Bazel.
