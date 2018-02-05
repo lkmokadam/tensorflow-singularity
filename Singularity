@@ -5,9 +5,7 @@ IncludeCmd: yes # Use the CMD as runscript instead of ENTRYPOINT
 
 %runscript
 
-    echo "Starting notebook..."
-    echo "Open browser to localhost:8888"
-    exec /usr/local/bin/jupyter notebook  --ip='*' --port=8888 --no-browser
+    echo "TF..."
 
 %post
  
@@ -44,10 +42,11 @@ IncludeCmd: yes # Use the CMD as runscript instead of ENTRYPOINT
     find /usr/local/cuda-9.0/lib64/ -type f -name 'lib*_static.a' -not -name 'libcudart_static.a' -delete && \
     rm /usr/lib/x86_64-linux-gnu/libcudnn_static_v7.a
 
-	curl -fSsL -O https://bootstrap.pypa.io/get-pip.py && \
-    python get-pip.py && \
-    rm get-pip.py
+        curl -fSsL -O https://bootstrap.pypa.io/get-pip.py && \
+        python get-pip.py && \
+        rm get-pip.py
 
+        
 	pip --no-cache-dir install \
         ipykernel \
         jupyter \
@@ -57,17 +56,7 @@ IncludeCmd: yes # Use the CMD as runscript instead of ENTRYPOINT
         sklearn \
         pandas \
         && \
-    python -m ipykernel.kernelspec
-
-	# Set up our notebook config.
-	wget https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/jupyter_notebook_config.py
-	cp jupyter_notebook_config.py /root/.jupyter/
-
-	# Jupyter has issues with being run directly:
-	#   https://github.com/ipython/ipython/issues/7062
-	# We just add a little wrapper script.
-	wget https://github.com/tensorflow/tensorflow/blob/master/tensorflow/tools/docker/run_jupyter.py
-	cp run_jupyter.sh /
+        python -m ipykernel.kernelspec
 
 	# Set up Bazel.
 
@@ -78,19 +67,18 @@ IncludeCmd: yes # Use the CMD as runscript instead of ENTRYPOINT
 	
 	# Similarly, we need to workaround sandboxing issues:
 	#   https://github.com/bazelbuild/bazel/issues/418
-	echo "build --spawn_strategy=standalone --genrule_strategy=standalone" \
-    >>/etc/bazel.bazelrc
+	echo "build --spawn_strategy=standalone --genrule_strategy=standalone" >>/etc/bazel.bazelrc
 	#   Install the most recent bazel release.
 	export BAZEL_VERSION 0.8.0
 	cd /
 	mkdir /bazel && \
-    cd /bazel && \
-    curl -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36" -fSsL -O https://github.com/bazelbuild/bazel/releases/download/$BAZEL_VERSION/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh && \
-    curl -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36" -fSsL -o /bazel/LICENSE.txt https://raw.githubusercontent.com/bazelbuild/bazel/master/LICENSE && \
-    chmod +x bazel-*.sh && \
-    ./bazel-$BAZEL_VERSION-installer-linux-x86_64.sh && \
-    cd / && \
-    rm -f /bazel/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh
+        cd /bazel && \
+        curl -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36" -fSsL -O https://github.com/bazelbuild/bazel/releases/download/$BAZEL_VERSION/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh && \
+        curl -H "User-Agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/57.0.2987.133 Safari/537.36" -fSsL -o /bazel/LICENSE.txt https://raw.githubusercontent.com/bazelbuild/bazel/master/LICENSE && \
+        chmod +x bazel-*.sh && \
+        ./bazel-$BAZEL_VERSION-installer-linux-x86_64.sh && \
+        cd / && \
+        rm -f /bazel/bazel-$BAZEL_VERSION-installer-linux-x86_64.sh
 
 	# Download and build TensorFlow.
 	cd /tensorflow
@@ -106,16 +94,16 @@ IncludeCmd: yes # Use the CMD as runscript instead of ENTRYPOINT
 	export TF_NEED_MPI 1
 
 	ln -s /usr/local/cuda/lib64/stubs/libcuda.so /usr/local/cuda/lib64/stubs/libcuda.so.1 && \
-    LD_LIBRARY_PATH=/usr/local/cuda/lib64/stubs:${LD_LIBRARY_PATH} \
-    tensorflow/tools/ci_build/builds/configured GPU \
-    bazel build -c opt --config=cuda -c opt     --config=mkl \
-	--cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" \
-        tensorflow/tools/pip_package:build_pip_package && \
-    rm /usr/local/cuda/lib64/stubs/libcuda.so.1 && \
-    bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/pip && \
-    pip --no-cache-dir install --upgrade /tmp/pip/tensorflow-*.whl && \
-    rm -rf /tmp/pip && \
-    rm -rf /root/.cache
+        LD_LIBRARY_PATH=/usr/local/cuda/lib64/stubs:${LD_LIBRARY_PATH} \
+        tensorflow/tools/ci_build/builds/configured GPU \
+        bazel build -c opt --config=cuda -c opt     --config=mkl \
+            --cxxopt="-D_GLIBCXX_USE_CXX11_ABI=0" \
+            tensorflow/tools/pip_package:build_pip_package && \
+        rm /usr/local/cuda/lib64/stubs/libcuda.so.1 && \
+        bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/pip && \
+        pip --no-cache-dir install --upgrade /tmp/pip/tensorflow-*.whl && \
+        rm -rf /tmp/pip && \
+        rm -rf /root/.cache
 	
 
-    cd /root
+        cd /root
