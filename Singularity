@@ -4,7 +4,7 @@
 ####
 
 BootStrap: docker
-From: ubuntu:zesty
+From: ubuntu:trusty
 
 %environment
   export PATH=${PATH-}:/usr/lib/jvm/java-8-openjdk-amd64/bin/:/usr/local/cuda/bin
