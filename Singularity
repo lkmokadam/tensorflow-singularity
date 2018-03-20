@@ -54,7 +54,8 @@ From: ubuntu:xenial
   # Install Bazel
   echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
   curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add - 
-  sudo apt-get update && sudo apt-get install bazel
+  apt-get update 
+  apt-get install bazel
 
   # Make sure no leftover tensorflow artifacts from previous builds
   rm -rf /tmp/tensorflow_pkg
