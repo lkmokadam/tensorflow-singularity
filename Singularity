@@ -20,7 +20,7 @@ From: ubuntu:trusty
   apt update
   apt install -y mpich
   apt install -y openjdk-8-jdk
-  apt install -y build-essential wget curl pkg-config libtool autoconf oracle-java8-installer g++ zip zlib1g-dev unzip git
+  apt install -y build-essential wget curl pkg-config libtool autoconf g++ zip zlib1g-dev unzip git
   apt install -y python-numpy python-scipy python-dev python-pip python-setuptools
   apt install -y python3-numpy python3-scipy python3-dev python3-pip python3-setuptools
 
