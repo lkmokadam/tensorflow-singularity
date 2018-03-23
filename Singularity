@@ -42,7 +42,7 @@ From: ubuntu:xenial
 
   # Install cuDNN
   wget http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/cudnn-7.5-linux-x64-v6.0.tgz
-  tar xvzf cudnn-7.5-linux-x64-v6.0.tgz 
+  tar cudnn-9.1-linux-x64-v7.1.tgz 
   cp -P cuda/include/cudnn.h /usr/local/cuda/include
   cp -P cuda/lib64/libcudnn* /usr/local/cuda/lib64
   chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
