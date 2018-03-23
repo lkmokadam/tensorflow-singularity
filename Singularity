@@ -79,7 +79,7 @@ From: ubuntu:xenial
   export TF_NEED_CUDA=1
   export TF_CUDA_CLANG=0
   export GCC_HOST_COMPILER_PATH=/usr/bin/gcc-4.9
-  export TF_CUDA_VERSION="9.0"
+  export TF_CUDA_VERSION="9.1"
   export CUDA_TOOLKIT_PATH="/usr/local/cuda"
   export TF_CUDNN_VERSION="9.1"
   export CUDNN_INSTALL_PATH=$CUDA_TOOLKIT_PATH
