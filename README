@@ -5,7 +5,7 @@ cd singularity-$VERSION
 ./configure --prefix=/usr/local
 make
 sudo make install
-sudo singularity build --writable ten.img  docker://ubuntu:xenial
+sudo singularity build --sandbox ten.img  docker://ubuntu:xenial
 sudo singularity shell --writable ten.img
 
 
