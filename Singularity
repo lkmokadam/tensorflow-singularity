@@ -34,11 +34,11 @@ From: ubuntu:xenial
   pip3 install --upgrade pip
 
   # Install CUDA toolkit and driver libraries/binaries
-
+  wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
   dpkg -i cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
   apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
   apt-get update
-  apt-get install cuda
+  apt-get install -y cuda
 
   # Install cuDNN
   wget http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/cudnn-7.5-linux-x64-v6.0.tgz
