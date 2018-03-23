@@ -16,7 +16,7 @@ From: ubuntu:xenial
   apt update
   apt-get install -y software-properties-common
   apt-add-repository universe 
-  add-apt-repository ppa:openjdk-r/ppa
+  add-apt-repository ppa:openjdk-r/ppa -y
   apt update
   apt install -y mpich
   apt install -y openjdk-8-jdk
