@@ -26,8 +26,10 @@ From: ubuntu:xenial
   apt install -y mpich openjdk-8-jdk build-essential wget curl pkg-config libtool \
                   autoconf g++ zip zlib1g-dev unzip git \
                   python-numpy python-scipy python-dev python-pip python-setuptools \
-                  python3-numpy python3-scipy python3-dev python3-pip python3-setuptools
-
+                  python3-numpy python3-scipy python3-dev python3-pip python3-setuptools locales
+  export LC_ALL="en_US.UTF-8"
+  export LC_CTYPE="en_US.UTF-8"
+  dpkg-reconfigure locales
   pip install --upgrade pip
   pip3 install --upgrade pip
 
