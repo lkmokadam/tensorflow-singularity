@@ -34,28 +34,21 @@ From: ubuntu:xenial
   pip3 install --upgrade pip
 
   # Install CUDA toolkit and driver libraries/binaries
-  wget http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
-  dpkg -i cuda-repo-ubuntu1604_9.0.176-1_amd64.deb
-  apt-key adv --fetch-keys http://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/7fa2af80.pub
+  wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64-deb
+  dpkg -i cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64-deb
   apt-get update
   apt-get install -y cuda
   LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH
 
   # Install cuDNN
-  wget http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/cudnn-7.5-linux-x64-v6.0.tgz
-  tar cudnn-9.1-linux-x64-v7.1.tgz 
+  wget http://developer.download.nvidia.com/compute/redist/cudnn/v6.0/cudnn-8.0-linux-x64-v6.0.tgz
+  tar xvfz cudnn-8.0-linux-x64-v6.0.tgz
   cp -P cuda/include/cudnn.h /usr/local/cuda/include
   cp -P cuda/lib64/libcudnn* /usr/local/cuda/lib64
   chmod a+r /usr/local/cuda/include/cudnn.h /usr/local/cuda/lib64/libcudnn*
 
   # Clean up CUDA install
-  rm -rf cuda_7.5.18_linux.run
-  rm -rf cudnn-7.5-linux-x64-v6.0.tgz
-
-  # Patch CUDA/7.5 to use gcc/4.9, the highest support release
-  apt install -y gcc-4.9 g++-4.9
-  ln -s /usr/bin/gcc-4.9 /usr/local/cuda/bin/gcc 
-  ln -s /usr/bin/g++-4.9 /usr/local/cuda/bin/g++
+  rm -rf cudnn-8.0-linux-x64-v6.0.tgz
 
   # Install Bazel
   echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" | tee /etc/apt/sources.list.d/bazel.list
@@ -80,7 +73,7 @@ From: ubuntu:xenial
   export TF_NEED_CUDA=1
   export TF_CUDA_CLANG=0
   export GCC_HOST_COMPILER_PATH=/usr/bin/gcc
-  export TF_CUDA_VERSION="9.1"
+  export TF_CUDA_VERSION="8.0"
   export CUDA_TOOLKIT_PATH="/usr/local/cuda"
   export TF_CUDNN_VERSION="7.1.2"
   export CUDNN_INSTALL_PATH=$CUDA_TOOLKIT_PATH
