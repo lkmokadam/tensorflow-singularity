@@ -75,7 +75,7 @@ From: ubuntu:xenial
   export GCC_HOST_COMPILER_PATH=/usr/bin/gcc
   export TF_CUDA_VERSION="8.0"
   export CUDA_TOOLKIT_PATH="/usr/local/cuda"
-  export TF_CUDNN_VERSION="7.1.2"
+  export TF_CUDNN_VERSION="6.0"
   export CUDNN_INSTALL_PATH=$CUDA_TOOLKIT_PATH
   export TF_CUDA_COMPUTE_CAPABILITIES="3.5"
   export TF_NEED_VERBS=0
