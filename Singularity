@@ -79,7 +79,7 @@ From: ubuntu:xenial
   export CUDNN_INSTALL_PATH=$CUDA_TOOLKIT_PATH
   export TF_CUDA_COMPUTE_CAPABILITIES="3.5"
   export TF_NEED_VERBS=0
-  export TF_NEED_MPI=0
+  export TF_NEED_MPI=1
   export MPI_HOME=/usr
   export TF_NEED_GDR=0
   export TF_NEED_S3=0
