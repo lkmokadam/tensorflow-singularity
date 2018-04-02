@@ -110,22 +110,17 @@ From: ubuntu:xenial
 
   # Install Additional deeplearning python packages
 
-  pip install keras
   pip3 install keras
 
-  pip install scikit-learn
   pip3 install scikit-learn
 
-  apt install -y python-theano
   apt install -y python3-theano
 
   # Install MPI4PY against mpich(python-mpi4py is built against OpenMPI)
   # GCC/4.8 is too old to acept the compile flags required by mpi4py
-  pip install mpi4py
   pip3 install mpi4py
 
   # Install a few plotting libraries
-  pip install matplotlib
   pip3 install matplotlib
 
   # Patch container to work on Titan
