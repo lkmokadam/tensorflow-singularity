@@ -74,7 +74,7 @@ From: ubuntu:xenial
   export GCC_HOST_COMPILER_PATH=/usr/bin/gcc
   export TF_CUDA_VERSION="8.0"
   export CUDA_TOOLKIT_PATH="/usr/local/cuda"
-  export TF_CUDNN_VERSION="7.1.2"
+  export TF_CUDNN_VERSION="6.0"
   export CUDNN_INSTALL_PATH=$CUDA_TOOLKIT_PATH
   export TF_CUDA_COMPUTE_CAPABILITIES="3.5"
   export TF_NEED_VERBS=0
@@ -89,22 +89,6 @@ From: ubuntu:xenial
 
   git config --global user.email "help@olcf.ornl.gov"
   git config --global user.name "OLCF"
-
-  # Build/Install Tensorflow against python 2
-  cd /
-  git clone https://github.com/tensorflow/tensorflow.git
-  cd tensorflow
-  git checkout tags/v1.6.0
-  ./configure
-
-  bazel build --action_env=LD_LIBRARY_PATH=/usr/local/cuda/lib64/stubs:${LD_LIBRARY_PATH} --local_resources 2048,2.0,1.0 -c opt --copt=-mavx --copt=-msse4.1 --copt=-msse4.2 --config=cuda tensorflow/tools/pip_package:build_pip_package
-  bazel-bin/tensorflow/tools/pip_package/build_pip_package /tmp/tensorflow_pkg
-
-  pip install /tmp/tensorflow_pkg/tensorflow-*.whl
-
-  cd /
-  rm -rf tensorflow
-  rm -rf /tmp/tensorflow_pkg
 
   # Build/Install Tensorflow against python 3
   export PYTHON_BIN_PATH=`which python3`
