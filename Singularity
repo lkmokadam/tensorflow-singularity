@@ -60,8 +60,6 @@ From: ubuntu:xenial
   rm -rf /root/.cache
 
   # Set tensorflow configure options
-  export PYTHON_BIN_PATH=`which python`
-  export PYTHON_LIB_PATH=/usr/lib/python2.7/dist-packages
   export TF_NEED_MKL=0
   export CC_OPT_FLAGS="-march=native"
   export TF_NEED_JEMALLOC=1
