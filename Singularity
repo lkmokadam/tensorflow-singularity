@@ -33,7 +33,7 @@ From: ubuntu:xenial
   pip3 install --upgrade pip
 
   # Install CUDA toolkit and driver libraries/binaries
-  wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1604/x86_64/cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
+  wget https://developer.nvidia.com/compute/cuda/8.0/Prod2/local_installers/cuda-repo-ubuntu1604-8-0-local-ga2_8.0.61-1_amd64-deb
   dpkg -i cuda-repo-ubuntu1604_8.0.61-1_amd64.deb
   apt-get update
   apt-get install -y cuda
