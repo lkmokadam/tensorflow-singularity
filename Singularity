@@ -88,9 +88,9 @@ From: ubuntu:xenial
   git config --global user.email "help@olcf.ornl.gov"
   git config --global user.name "OLCF"
 
-  # Build/Install Tensorflow against python 3
-  export PYTHON_BIN_PATH=`which python3`
-  export PYTHON_LIB_PATH=/usr/lib/python3/dist-packages
+  # Build/Install Tensorflow against python 2
+  export PYTHON_BIN_PATH=`which python`
+  export PYTHON_LIB_PATH=/usr/lib/python2.7/dist-packages
 
   git clone https://github.com/tensorflow/tensorflow.git
   cd tensorflow
