@@ -50,9 +50,8 @@ From: ubuntu:trusty
   ln -s /usr/bin/g++-4.9 /usr/local/cuda/bin/g++
 
   # Install Bazel
-  wget https://github.com/bazelbuild/bazel/releases/download/0.4.5/bazel-0.4.5-installer-linux-x86_64.sh
-  chmod +x bazel-0.4.5-installer-linux-x86_64.sh
-  ./bazel-0.4.5-installer-linux-x86_64.sh  
+  wget https://github.com/bazelbuild/bazel/releases/download/0.11.1/bazel_0.11.1-linux-x86_64.deb
+  dpkg -i bazel_0.11.1-linux-x86_64.deb
 
   # Make sure no leftover tensorflow artifacts from previous builds
   rm -rf /tmp/tensorflow_pkg
